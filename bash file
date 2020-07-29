@@ -1,0 +1,8 @@
+#! /bin/bash
+s1=$1
+s2=$2
+wget https://darksky.net/forecast/$s1,$s2/
+
+echo "temperature is=" `cat index.html | grep '\<currently = {"' | grep -Eo "\"temperature\":[0-9]{2}\.[0-9]{2}" | grep -o "[0-9].*"`
+echo "weather is=" `cat index.html | grep '\<currently = {"' | grep -o 'icon":"............'| grep -o ':.*' | grep -o '"...........'`
+rm index.html
